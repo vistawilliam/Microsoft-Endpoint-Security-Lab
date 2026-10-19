@@ -66,6 +66,11 @@ After preparing the CSV file, I performed the bulk user creation operation using
 
 The bulk operation completed with a **Succeeded** status.
 
+![Microsoft Entra ID bulk user creation operation showing Succeeded status](screenshots/02-bulk-import-success.png)
+
+*Figure 2: Microsoft Entra ID bulk operation results confirming that the CSV-based user creation operation completed successfully.*
+
+
 ### 4.3 Verifying the Created Accounts
 
 After completing the import, I verified the results in the Microsoft Entra admin center.
@@ -76,6 +81,10 @@ After completing the import, I verified the results in the Microsoft Entra admin
 2. Confirmed that the newly created practice accounts appeared in the user directory.
 3. Opened an individual user account to inspect its properties.
 4. Verified the user identity, assigned job title, department, and account status.
+5. 
+![Created user accounts in Microsoft Entra ID](screenshots/03-created-users.png)
+
+*Figure 3: Microsoft Entra ID user directory displaying the newly provisioned practice accounts following the successful bulk import.*
 
 **Example verification — Daniel Reed**
 
@@ -85,5 +94,18 @@ After completing the import, I verified the results in the Microsoft Entra admin
 - **Department:** Project Management
 - **Account enabled:** Yes
 - **Usage location:** United States
+
+
+![Daniel Reed identity properties in Microsoft Entra ID](screenshots/04A-user-properties-verification.png)
+
+*Figure 4A: Verification of the newly created user's identity attributes, including display name, first name, last name, and user principal name.*
+
+
+
+![Daniel Reed job information and account status in Microsoft Entra ID](screenshots/04B-user-properties-verification.png)
+
+*Figure 4B: Verification of Daniel Reed's job title, Project Management department, enabled account status, and usage location in Microsoft Entra ID.*
+  
+  
 
 **Result:** The bulk creation operation succeeded, the 10 practice accounts appeared in the directory, and the inspected sample account contained the expected attributes.
