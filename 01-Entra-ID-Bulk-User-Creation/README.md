@@ -46,6 +46,9 @@ I populated the following user attributes:
 - **Usage location:** Set to `US` for the practice accounts.
 
 I saved the completed file in CSV format, ready for bulk provisioning.
+![Sanitized CSV template showing fictional employee account details](screenshots/01-csv-template-sanitized.png)
+
+*Figure 1: CSV template prepared for bulk user provisioning, showing user attributes with initial passwords redacted.*
 
 ### 4.2 Performing Bulk User Creation
 
