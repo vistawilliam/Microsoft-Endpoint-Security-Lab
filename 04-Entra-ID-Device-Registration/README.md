@@ -122,3 +122,16 @@ Enabled Windows LAPS in Microsoft Entra ID. Attempted to access Endpoint Securit
 **Result:** Configuration not performed because ESR is no longer managed through the Entra Admin Center.
 
 **Security concept:** Centralized management helps organizations control the synchronization and backup of Windows settings.
+### 8. Windows Device Join Verification
+
+**Objective:** Join a Windows 11 virtual machine to Microsoft Entra ID.
+
+**Actions performed:**
+1. Installed Windows 11 Enterprise Evaluation in VirtualBox.
+2. Joined the device using an authorized test account.
+3. Verified `AzureAdJoined: YES` using PowerShell.
+4. Confirmed successful device authentication.
+
+**Result:** Windows 11 successfully joined to Microsoft Entra ID.
+
+**Security concept:** Microsoft Entra device identities enable centralized authentication and device access management.
