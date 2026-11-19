@@ -135,3 +135,18 @@ Enabled Windows LAPS in Microsoft Entra ID. Attempted to access Endpoint Securit
 **Result:** Windows 11 successfully joined to Microsoft Entra ID.
 
 **Security concept:** Microsoft Entra device identities enable centralized authentication and device access management.
+### 9. BitLocker Encryption and Recovery
+
+**Objective:** Verify BitLocker protection and recovery-key availability.
+
+**Actions performed:**
+1. Checked BitLocker status using PowerShell.
+2. Confirmed the C: drive was fully encrypted.
+3. Verified BitLocker protection was enabled.
+4. Located the recovery-key retrieval option in Microsoft Entra ID.
+
+![BitLocker status](screenshots/12-bitlocker-status.png)
+
+*Figure 12: BitLocker encryption verified at 100%.*
+
+**Security concept:** BitLocker protects stored data through encryption and supports recovery using securely stored recovery keys.
