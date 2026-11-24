@@ -151,3 +151,19 @@ Enabled Windows LAPS in Microsoft Entra ID. Attempted to access Endpoint Securit
 *Figure 12: BitLocker encryption verified at 100%.*
 
 **Security concept:** BitLocker protects stored data through encryption and supports recovery using securely stored recovery keys.
+### 10. Windows LAPS Password Management
+
+**Objective:** Configure and verify local administrator password backup.
+
+**Actions performed:**
+1. Enabled Windows LAPS in Microsoft Entra ID.
+2. Configured local LAPS policy using PowerShell.
+3. Investigated Event ID 10067 (disabled Administrator account).
+4. Verified successful password backup using Event ID 10029.
+5. Located the device and password rotation schedule in Microsoft Entra ID.
+
+![LAPS verification](screenshots/13-laps-recovery-verification.png)
+
+*Figure 13: Windows LAPS recovery information and password rotation schedule.*
+
+**Result:** Password backup confirmed. Follow-up verification of the account-disabled warning is pending.
