@@ -177,3 +177,26 @@ Enabled Windows LAPS in Microsoft Entra ID. Attempted to access Endpoint Securit
 3. Verified the role assignment was removed.
 
 **Security concept:** Removing unnecessary privileges reduces security risks and limits potential unauthorized access.
+## Lab 04 — Summary and Key Takeaways
+
+This lab explored Microsoft Entra ID device registration and endpoint security through hands-on configuration and testing.
+
+**Practical skills demonstrated:**
+- Device registration and join restrictions
+- Conditional Access MFA policy configuration (Report-only)
+- Microsoft Entra device joining
+- Local administrator privilege management
+- BitLocker encryption verification
+- Windows LAPS password backup and recovery
+- Troubleshooting using Windows PowerShell and event logs
+
+**Challenges encountered:**
+- Limited access to Microsoft Intune
+- Local administrator permission restrictions
+- Windows LAPS Event ID 10067 caused by a disabled administrator account
+
+**Outcome:** Successfully joined a Windows 11 virtual machine to Microsoft Entra ID, verified BitLocker protection and LAPS recovery information, and removed temporary tenant-wide administrative privileges.
+
+**Limitations:** MFA enforcement, Intune policy deployment, and automatic LAPS password rotation were not tested.
+
+**Key lesson:** Secure device administration requires proper identity configuration, least-privilege access, encryption, credential management, and verification through system logs.
