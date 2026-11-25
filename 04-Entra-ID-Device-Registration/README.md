@@ -18,7 +18,7 @@
 
 *Figure 2: Device joining restricted to SG-Cybersecurity.*
 
-**Security concept:** Limiting device join permissions helps reduce unauthorized device enrollment.
+**Security concept:** Restricting Microsoft Entra device joining to authorized security groups supports least privilege and reduces unauthorized device joins.
 ## 2. Device Limit Configuration
 
 **Objective:** Restrict the number of devices per user.
@@ -32,7 +32,7 @@
 
 *Figure 3: Maximum device limit configured to five.*
 
-**Security concept:** Device limits help control the number of devices associated with each user account.
+**Security concept:** Limiting the number of devices per user helps organizations control device registrations and joins, reducing unnecessary device associations.
 ## 3. Device Registration and MFA
 
 **Objective:** Review device registration permissions and MFA security controls.
@@ -42,7 +42,7 @@
 2. Confirmed device registration was set to All.
 3. Identified Conditional Access as the recommended method for enforcing MFA during device registration.
 
-**Security concept:** MFA helps prevent unauthorized device registration using compromised credentials.
+**Security concept:** MFA adds an additional layer of identity verification, helping protect device registration against unauthorized access.
 ### 3.1 Conditional Access Licensing
 
 **Objective:** Verify licensing requirements for Conditional Access.
@@ -63,7 +63,7 @@
 3. Configured multifactor authentication.
 4. Saved the policy in Report-only mode.
 
-**Result:** Policy created successfully without enforcing MFA.
+**Result:** Successfully created a Conditional Access policy requiring MFA for device registration, configured in Report-only mode. MFA enforcement was not tested.
 
 ### 4. Local Administrator Security
 
@@ -74,9 +74,9 @@
 2. Confirmed automatic local administrator assignment was set to None.
 3. Identified the additional local administrator management option.
 
-**Security concept:** Least privilege reduces unnecessary administrative access to devices.
+**Result:** Confirmed that automatic local administrator assignment was set to None and that the Device Administrators role initially had no assigned users.
 
-**Result:** Verified that no users were directly assigned to the Microsoft Entra Joined Device Local Administrator role, reducing unnecessary privileged access.
+**Security concept:** Applying least privilege helps prevent unnecessary administrative access to Windows devices.
 
 ### 5. Windows LAPS Configuration
 
@@ -91,25 +91,25 @@
 
 *Figure 8: Windows LAPS enabled in Microsoft Entra ID.*
 
-**Security concept:** Windows LAPS helps protect local administrator accounts through secure password backup and rotation.
-
 **Intune LAPS Policy — Access Limitation**
 
-Enabled Windows LAPS in Microsoft Entra ID. Attempted to access Endpoint Security in Microsoft Intune but encountered an access restriction.
+Attempted to configure Windows LAPS through Microsoft Intune but encountered an access restriction.
 
-**Status:** Tenant-level LAPS enabled; device policy deployment not completed.
+**Result:** Successfully enabled LAPS in Microsoft Entra ID. Subsequently configured LAPS locally using PowerShell and verified password backup in Section 10.
+
+**Security concept:** Windows LAPS supports secure local administrator password management and rotation.
 ### 6. BitLocker Recovery Key Management
 
 **Objective:** Explore BitLocker recovery key management in Microsoft Entra ID.
 
 **Actions performed:**
-1. Opened Entra ID → Devices → All devices.
-2. Checked for registered or joined devices.
-3. Found no devices available.
+1. Checked Entra ID for registered or joined devices.
+2. Initially found no devices available.
+3. Later joined a Windows 11 virtual machine and continued BitLocker testing in Section 9.
 
-**Result:** Recovery key management could not be tested because no devices were enrolled or registered.
+**Result:** Successfully verified BitLocker encryption and located the recovery-key retrieval option after registering the test device.
 
-**Security concept:** BitLocker protects data through encryption, while recovery keys help restore access when necessary.
+**Security concept:** BitLocker protects stored data through encryption, while recovery keys enable authorized recovery of encrypted drives.
 ### 7. Enterprise State Roaming (ESR)
 
 **Objective:** Review Windows settings synchronization management.
@@ -119,23 +119,27 @@ Enabled Windows LAPS in Microsoft Entra ID. Attempted to access Endpoint Securit
 2. Identified Microsoft's migration to Windows settings backup and restore.
 3. Reviewed the available management options.
 
-**Result:** Configuration not performed because ESR is no longer managed through the Entra Admin Center.
+**Result:** Reviewed Enterprise State Roaming and identified Microsoft's transition to Windows settings backup and restore. No configuration changes were performed due to the migration of management settings.
 
-**Security concept:** Centralized management helps organizations control the synchronization and backup of Windows settings.
+**Security concept:** Centralized settings management helps organizations maintain consistent device configurations and manage Windows settings synchronization.
 ### 8. Windows Device Join
 
 **Objective:** Connect a dedicated Windows test device to Microsoft Entra ID.
 
 **Actions performed:**
-1. Created a Windows 11 test environment.
-2. Joined the device using an authorized user account.
-3. Verified its registration in Microsoft Entra ID.
+1. Installed Windows 11 Enterprise Evaluation in VirtualBox.
+2. Joined the VM to Microsoft Entra ID using Amara Lewis's account.
+3. Verified the connection using `dsregcmd /status`.
+4. Confirmed `AzureAdJoined: YES` and `DeviceAuthStatus: SUCCESS`.
+5. Verified the device appeared in Microsoft Entra Admin Center.
+
+**Result:** Successfully joined and authenticated a Windows 11 virtual machine to Microsoft Entra ID.
 
 ![Windows device joined](screenshots/09-windows-device-joined.png)
 
 *Figure 9: Windows test device successfully joined to Microsoft Entra ID.*
 
-**Security concept:** Device identities support centralized access control and device security management.
+**Security concept:** Microsoft Entra device identities enable centralized device authentication and access management.
 ### 9. BitLocker Encryption and Recovery
 
 **Objective:** Verify BitLocker protection and recovery-key availability.
@@ -150,23 +154,36 @@ Enabled Windows LAPS in Microsoft Entra ID. Attempted to access Endpoint Securit
 
 *Figure 12: BitLocker encryption verified at 100%.*
 
-**Security concept:** BitLocker protects stored data through encryption and supports recovery using securely stored recovery keys.
+**Verification results:**
+- Volume status: FullyEncrypted
+- Protection status: On
+- Encryption percentage: 100%
+- Recovery-key retrieval option available in Microsoft Entra ID.
+
+**Result:** Successfully verified BitLocker encryption and located the device's recovery-key information in Microsoft Entra ID.
+
+**Security concept:** BitLocker protects data at rest through encryption, while recovery keys enable authorized access when normal unlocking is unavailable.
 ### 10. Windows LAPS Password Management
 
-**Objective:** Configure and verify local administrator password backup.
+**Objective:** Configure and verify local administrator password backup using Windows LAPS.
 
 **Actions performed:**
+
 1. Enabled Windows LAPS in Microsoft Entra ID.
-2. Configured local LAPS policy using PowerShell.
-3. Investigated Event ID 10067 (disabled Administrator account).
-4. Verified successful password backup using Event ID 10029.
-5. Located the device and password rotation schedule in Microsoft Entra ID.
+2. Configured the local LAPS policy using PowerShell.
+3. Investigated Event ID 10067, identifying a disabled Administrator account.
+4. Enabled the Administrator account and verified its status.
+5. Confirmed an earlier successful password backup using Event ID 10029.
+6. Verified the device's recovery information and password rotation schedule in Microsoft Entra ID.
 
 ![LAPS verification](screenshots/13-laps-recovery-verification.png)
 
 *Figure 13: Windows LAPS recovery information and password rotation schedule.*
 
-**Result:** Password backup confirmed. Follow-up verification of the account-disabled warning is pending.
+**Result:** Successfully verified that Windows LAPS recovery information was stored in Microsoft Entra ID. The Administrator account was enabled, but subsequent warning-free policy processing was not verified.
+
+**Security concept:** Windows LAPS improves endpoint security by managing local administrator passwords through secure backup and rotation.
+
 ### 11. Administrator Privilege Removal
 
 **Objective:** Apply the principle of least privilege.
