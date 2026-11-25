@@ -167,3 +167,13 @@ Enabled Windows LAPS in Microsoft Entra ID. Attempted to access Endpoint Securit
 *Figure 13: Windows LAPS recovery information and password rotation schedule.*
 
 **Result:** Password backup confirmed. Follow-up verification of the account-disabled warning is pending.
+### 11. Administrator Privilege Removal
+
+**Objective:** Apply the principle of least privilege.
+
+**Actions performed:**
+1. Reviewed temporary device administrator permissions.
+2. Removed Maya Patel from the Device Administrators role.
+3. Verified the role assignment was removed.
+
+**Security concept:** Removing unnecessary privileges reduces security risks and limits potential unauthorized access.
