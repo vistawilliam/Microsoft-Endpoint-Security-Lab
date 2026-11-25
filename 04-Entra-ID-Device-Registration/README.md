@@ -11,11 +11,9 @@
 4. Saved and verified the configuration.
 
 ![Before](screenshots/01-before-device-settings.png)
-
 *Figure 1: Default device registration settings.*
 
 ![After](screenshots/02-restricted-device-join.png)
-
 *Figure 2: Device joining restricted to SG-Cybersecurity.*
 
 **Security concept:** Restricting Microsoft Entra device joining to authorized security groups supports least privilege and reduces unauthorized device joins.
@@ -29,7 +27,6 @@
 3. Saved and verified the configuration.
 
 ![Device limit](screenshots/03-device-limit-configuration.png)
-
 *Figure 3: Maximum device limit configured to five.*
 
 **Security concept:** Limiting the number of devices per user helps organizations control device registrations and joins, reducing unnecessary device associations.
@@ -88,7 +85,6 @@
 3. Verified the configuration.
 
 ![Windows LAPS enabled](screenshots/08-laps-enabled.png)
-
 *Figure 8: Windows LAPS enabled in Microsoft Entra ID.*
 
 **Intune LAPS Policy — Access Limitation**
@@ -136,7 +132,6 @@ Attempted to configure Windows LAPS through Microsoft Intune but encountered an 
 **Result:** Successfully joined and authenticated a Windows 11 virtual machine to Microsoft Entra ID.
 
 ![Windows device joined](screenshots/09-windows-device-joined.png)
-
 *Figure 9: Windows test device successfully joined to Microsoft Entra ID.*
 
 **Security concept:** Microsoft Entra device identities enable centralized device authentication and access management.
@@ -151,7 +146,6 @@ Attempted to configure Windows LAPS through Microsoft Intune but encountered an 
 4. Located the recovery-key retrieval option in Microsoft Entra ID.
 
 ![BitLocker status](screenshots/12-bitlocker-status.png)
-
 *Figure 12: BitLocker encryption verified at 100%.*
 
 **Verification results:**
@@ -177,7 +171,6 @@ Attempted to configure Windows LAPS through Microsoft Intune but encountered an 
 6. Verified the device's recovery information and password rotation schedule in Microsoft Entra ID.
 
 ![LAPS verification](screenshots/13-laps-recovery-verification.png)
-
 *Figure 13: Windows LAPS recovery information and password rotation schedule.*
 
 **Result:** Successfully verified that Windows LAPS recovery information was stored in Microsoft Entra ID. The Administrator account was enabled, but subsequent warning-free policy processing was not verified.
@@ -186,34 +179,38 @@ Attempted to configure Windows LAPS through Microsoft Intune but encountered an 
 
 ### 11. Administrator Privilege Removal
 
-**Objective:** Apply the principle of least privilege.
+**Objective:** Remove temporary administrative privileges after security testing.
 
 **Actions performed:**
-1. Reviewed temporary device administrator permissions.
-2. Removed Maya Patel from the Device Administrators role.
-3. Verified the role assignment was removed.
+1. Assigned Maya Patel the Device Administrators role for testing.
+2. Verified her elevated administrator access using PowerShell.
+3. Removed Maya from the Device Administrators role after testing.
+4. Confirmed that no role assignments remained.
 
-**Security concept:** Removing unnecessary privileges reduces security risks and limits potential unauthorized access.
+**Result:** Successfully removed Maya's tenant-wide administrator role assignment.
+
+**Security concept:** The principle of least privilege ensures users retain only the permissions necessary for their tasks, reducing security risks.
+
 ## Lab 04 — Summary and Key Takeaways
 
-This lab explored Microsoft Entra ID device registration and endpoint security through hands-on configuration and testing.
+**Overview:** Practiced Microsoft Entra ID device registration, access controls, and endpoint security using a Windows 11 virtual machine.
 
-**Practical skills demonstrated:**
-- Device registration and join restrictions
+**Skills demonstrated:**
+- Microsoft Entra device joining and verification
 - Conditional Access MFA policy configuration (Report-only)
-- Microsoft Entra device joining
+- Device join restrictions and registration limits
 - Local administrator privilege management
-- BitLocker encryption verification
-- Windows LAPS password backup and recovery
-- Troubleshooting using Windows PowerShell and event logs
+- BitLocker encryption and recovery-key verification
+- Windows LAPS password backup
+- PowerShell troubleshooting and event log analysis
 
 **Challenges encountered:**
-- Limited access to Microsoft Intune
-- Local administrator permission restrictions
-- Windows LAPS Event ID 10067 caused by a disabled administrator account
+- Restricted Microsoft Intune access
+- Insufficient local administrator permissions
+- Windows LAPS Event ID 10067 caused by a disabled Administrator account
 
-**Outcome:** Successfully joined a Windows 11 virtual machine to Microsoft Entra ID, verified BitLocker protection and LAPS recovery information, and removed temporary tenant-wide administrative privileges.
+**Outcome:** Successfully joined a Windows 11 VM to Microsoft Entra ID, verified BitLocker encryption and LAPS recovery information, and removed temporary administrative role assignments.
 
-**Limitations:** MFA enforcement, Intune policy deployment, and automatic LAPS password rotation were not tested.
+**Limitations:** MFA enforcement, Intune policy deployment, and automatic LAPS rotation were not tested. Warning-free LAPS processing after troubleshooting was not verified.
 
-**Key lesson:** Secure device administration requires proper identity configuration, least-privilege access, encryption, credential management, and verification through system logs.
+**Key takeaway:** Effective endpoint security relies on least privilege, device identity management, encryption, secure credential management, and continuous verification.
